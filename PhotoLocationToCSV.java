@@ -7,13 +7,9 @@ import java.nio.file.Paths;
 
 
 public class PhotoLocationToCSV {
-    private static BufferedWriter bw = null;
-    private static final String INPUT_DIRECTORY = "D:\\TestFolder";
-    private static final String OUTPUT_FILENAME = "locations.csv";
-
     public static void main(String[] args) throws IOException {
-        bw = new BufferedWriter(new FileWriter(new File(OUTPUT_FILENAME)));
-        Files.find(Paths.get(INPUT_DIRECTORY),
+        BufferedWriter bw = new BufferedWriter(new FileWriter(new File(args[1])));
+        Files.find(Paths.get(args[0]),
                 Integer.MAX_VALUE,
                 (filePath, fileAttr) -> fileAttr.isRegularFile())
                 .parallel()
